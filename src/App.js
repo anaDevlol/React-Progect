@@ -1,9 +1,22 @@
-import './App.css';
+import Header from "./Header";
+import Hero from "./Hero";
+import Specials from "./Specials";
+import Testimonials from "./Testimonials";
+import About from "./About";
+import Footer from "./Footer";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <div className='Homepage'></div>
+    <div className="contenar">
+      <Header />
+      <main>
+        <Hero />
+        <Specials />
+        <Testimonials />
+        <About />
+      </main>
+      <Footer />
     </div>
   );
 }
