@@ -1,4 +1,4 @@
-import restauranfood from './assets/restauranfood.jpg'
+import restauranfood from '../assets/restauranfood.jpg'
 function Hero() {
   return (
     <section className="hero">
