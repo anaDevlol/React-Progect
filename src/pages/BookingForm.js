@@ -8,7 +8,7 @@ function BookingForm({
   const [date, setDate] = useState("");
   const [time, setTime] = useState("17:00");
   const [guests, setGuests] = useState(1);
-  const [occasion, setOccasion] = useState("Birthday");
+  const [occasion, setOccasion] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,8 +28,7 @@ function BookingForm({
   guests <= 10 &&
   Boolean(occasion);
 
-  return (
-    
+  return ( 
     <form
       onSubmit={handleSubmit}
       style={{
@@ -74,6 +73,7 @@ function BookingForm({
         min="1"
         max="10"
         required
+        aria-label="Number of guests"
         value={guests}
         onChange={(e) => setGuests(Number(e.target.value))}
       />
@@ -86,6 +86,7 @@ function BookingForm({
         value={occasion}
         onChange={(e) => setOccasion(e.target.value)}
       >
+        <option value="">Select Occasion</option>
         <option>Birthday</option>
         <option>Engagement</option>
         <option>Anniversary</option>
@@ -94,10 +95,10 @@ function BookingForm({
       <input
         type="submit"
         value="Make Your Reservation"
+        aria-label="Submit reservation form"
         disabled={!isFormValid}
       />
     </form>
-    
   );
 }
 

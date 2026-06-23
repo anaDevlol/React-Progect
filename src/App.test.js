@@ -1,8 +1,8 @@
- jest.mock("react-router-dom", () => ({
-  useNavigate: () => jest.fn(),
-}));
- import { render, screen } from "@testing-library/react";
-// import BookingForm from "./pages/BookingForm";
+import { render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
+//import { initializeTimes, updateTimes } from "./pages/BookingPage";
+import BookingForm from "./pages/BookingForm";
+
 
 // test("Renders BookingForm heading", () => {
 //   render(
@@ -27,7 +27,6 @@
 //   "21:00",
 //   "22:00"
 // ]);
-// import { initializeTimes, updateTimes } from "./pages/BookingPage";
 
 // test("initializeTimes returns available times", () => {
 //   expect(initializeTimes().length).toBeGreaterThan(0);
@@ -38,3 +37,49 @@
 //     updateTimes([], "2026-06-22").length
 //   ).toBeGreaterThan(0);
 // });
+
+
+ test("Date field is required", () => {
+   render(
+     <BookingForm
+       availableTimes={["17:00"]}
+       dispatch={() => {}}
+      submitForm={() => {}}
+     />
+   );
+
+   const dateInput = screen.getByLabelText(/choose date/i);
+
+   expect(dateInput).toHaveAttribute("required");
+ });
+ test("Guests input has min and max values", () => {
+   render(
+     <BookingForm
+       availableTimes={["17:00"]}
+       dispatch={() => {}}
+       submitForm={() => {}}
+     />
+   );
+
+   const guestsInput =
+     screen.getByLabelText(/number of guests/i);
+
+   expect(guestsInput).toHaveAttribute("min", "1");
+   expect(guestsInput).toHaveAttribute("max", "10");
+ });
+ test("Submit button is disabled initially", () => {
+   render(
+     <BookingForm
+       availableTimes={["17:00"]}
+       dispatch={() => {}}
+      submitForm={() => {}}
+     />
+   );
+
+   const submitButton =
+     screen.getByDisplayValue(
+      /make your reservation/i
+     );
+
+   expect(submitButton).toBeDisabled();
+});

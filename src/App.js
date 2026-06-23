@@ -20,10 +20,10 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/booking" element={<BookingPage />} />
         <Route path="/confirmed" element={<ConfirmedBooking />} />
-        
       </Routes>
 
-      <Footer /></div>
+      <Footer />
+    </div>
     </BrowserRouter>
   );
 }
