@@ -21,6 +21,13 @@ function BookingForm({
     });
   };
 
+  const isFormValid =
+  Boolean(date) &&
+  Boolean(time) &&
+  guests >= 1 &&
+  guests <= 10 &&
+  Boolean(occasion);
+
   return (
     
     <form
@@ -37,6 +44,7 @@ function BookingForm({
         type="date"
         id="res-date"
         value={date}
+        required
         onChange={(e) => {
           setDate(e.target.value);
           dispatch(e.target.value);
@@ -47,6 +55,7 @@ function BookingForm({
 
       <select
         id="res-time"
+        required
         value={time}
         onChange={(e) => setTime(e.target.value)}
       >
@@ -64,14 +73,16 @@ function BookingForm({
         id="guests"
         min="1"
         max="10"
+        required
         value={guests}
-        onChange={(e) => setGuests(e.target.value)}
+        onChange={(e) => setGuests(Number(e.target.value))}
       />
 
       <label htmlFor="occasion">Occasion</label>
 
       <select
         id="occasion"
+        required
         value={occasion}
         onChange={(e) => setOccasion(e.target.value)}
       >
@@ -83,6 +94,7 @@ function BookingForm({
       <input
         type="submit"
         value="Make Your Reservation"
+        disabled={!isFormValid}
       />
     </form>
     
